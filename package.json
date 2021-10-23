@@ -2,6 +2,7 @@
   "name": "chorus-lapilli",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://hanryxu.github.io/chorus-lapilli",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -12,6 +13,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
