@@ -193,6 +193,28 @@ class Game extends React.Component {
           <div>{hint}</div>
           <ol>{moves}</ol>
         </div>
+        <div className="game-rules" style={{ position: "fixed", bottom: 0 }}>
+          <p>
+            Chorus lapilli is like{" "}
+            <a href="https://en.wikipedia.org/wiki/Tic-tac-toe">tic-tac-toe</a>{" "}
+            in that players take turn placing pieces on a 3×3 board and the goal
+            is to get three pieces in a row. However, it differs from
+            tic-tac-toe in two ways:
+          </p>
+          <ul>
+            <li>
+              After your first three moves, instead of adding further pieces you
+              must instead move one of your existing pieces to an empty square
+              that is adjacent vertically, horizontally, or diagonally.
+              Therefore, after your third move you always occupy three squares.
+            </li>
+            <li>
+              If you have three pieces on the board and one of your pieces is in
+              the center square, you must either win or vacate the center square
+              in your next move.
+            </li>
+          </ul>
+        </div>
       </div>
     );
   }
