@@ -117,6 +117,27 @@ class Game extends React.Component {
         if (moveValid(i, j)) {
           squares[j] = thisMove;
           squares[i] = null;
+        } else {
+          this.setState({
+            selectedMove: {
+              select: null,
+              target: null,
+            },
+            hint:
+              "Cannot move " +
+              thisMove +
+              " from " +
+              positions[0][Math.floor(i / 3)] +
+              " " +
+              positions[1][i % 3] +
+              " to " +
+              positions[0][Math.floor(j / 3)] +
+              " " +
+              positions[1][j % 3] +
+              ". Has reset selected " +
+              thisMove,
+          });
+          return;
         }
         if (
           calculateWinner(squares) === null &&
@@ -167,6 +188,7 @@ class Game extends React.Component {
     const winner = calculateWinner(current.squares);
     const hint = this.state.hint;
     const moves = history.map((step, move) => {
+      // map((element, index) => { ... })
       const desc = move ? "Go to move #" + move : "Go to game start";
       return (
         <li key={move}>
