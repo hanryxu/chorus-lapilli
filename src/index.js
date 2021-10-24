@@ -91,6 +91,7 @@ class Game extends React.Component {
         ]),
         stepNumber: history.length,
         xIsNext: !this.state.xIsNext,
+        hint: null,
       });
     } else {
       if (this.state.selectedMove.select === null) {
@@ -111,7 +112,19 @@ class Game extends React.Component {
         });
       } else {
         // selecting where to move
-        if (squares[i] !== null) return;
+        if (squares[i] !== null) {
+          this.setState({
+            selectedMove: { select: null, target: null },
+            hint:
+              "Square at " +
+              positions[0][Math.floor(i / 3)] +
+              " " +
+              positions[1][i % 3] +
+              " occupied, cannot move there. Has reset selected " +
+              thisMove,
+          });
+          return;
+        }
         let j = i;
         i = this.state.selectedMove.select;
         if (moveValid(i, j)) {
@@ -135,7 +148,7 @@ class Game extends React.Component {
               " " +
               positions[1][j % 3] +
               ". Has reset selected " +
-              thisMove,
+              thisMove
           });
           return;
         }
