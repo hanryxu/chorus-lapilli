@@ -81,6 +81,7 @@ class Game extends React.Component {
     }
     // This should be where our new logic or chorus-lapilli comes in
     if (this.state.stepNumber <= 5) {
+      // first few moves, same as tic-tac-toe
       if (squares[i] != null) return;
       squares[i] = thisMove;
       this.setState({
@@ -97,6 +98,7 @@ class Game extends React.Component {
       if (this.state.selectedMove.select === null) {
         // selecting which to move
         if (squares[i] !== thisMove) return;
+        // as long as it's a piece belonging to the player, it's OK
         this.setState({
           selectedMove: {
             select: i,
@@ -113,6 +115,7 @@ class Game extends React.Component {
       } else {
         // selecting where to move
         if (squares[i] !== null) {
+          // if the target position is occupied
           this.setState({
             selectedMove: { select: null, target: null },
             hint:
@@ -128,6 +131,7 @@ class Game extends React.Component {
         let j = i;
         i = this.state.selectedMove.select;
         if (moveValid(i, j)) {
+          // check if the move is within reach
           squares[j] = thisMove;
           squares[i] = null;
         } else {
@@ -157,6 +161,7 @@ class Game extends React.Component {
           squares[4] === thisMove &&
           j !== 4
         ) {
+          // if has a piece at the center and didn't move, then it's an invalid move
           this.setState({
             hint:
               thisMove +
@@ -169,6 +174,7 @@ class Game extends React.Component {
           return;
         }
         this.setState({
+          // finally we can move them
           history: history.concat([
             {
               squares: squares,
